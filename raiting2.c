@@ -11,7 +11,7 @@ void output (int array[][J] )
    {
 	for (j = 0; j < J; ++j)
 	  {
-        printf("%3d",array[i][j] );
+        printf("%4d",array[i][j] );
 	  }
 	printf("\n");
    }
@@ -46,7 +46,7 @@ void arry_input (int array[][J])
    }
 }
 
-void plusplus(int array[][I])
+void plusplus(int array[][J])
 {int i, j,a;
  for (i = 0; i < I; ++i)
    {
@@ -56,6 +56,19 @@ void plusplus(int array[][I])
        a += array[i][j];
    	  }
    	printf("Сумма элементов строки %d = %d\n",i+1, a );
+   }
+}
+
+void plusplus_for2(int array[][I])
+{int i, j,a;
+ for (i = 0; i < J; ++i)
+   {
+    a=0;
+    for (j = 0; j < I; ++j)
+      {
+       a += array[i][j];
+      }
+    printf("Сумма элементов строки %d = %d\n",i+1, a );
    }
 }
 
@@ -90,10 +103,17 @@ int main()
  int array[I][J];
  int crab[J][I];
  arry_input(array);
+ printf("\n*********************\n");
+ printf("Вывод первого массива\n");
+ printf("*********************\n");
  output(array);
- // plusplus(array);
+ plusplus(array);
  changing(array, crab);
- printf("\n\n\n");
+ printf("\n\n");
+ printf("*********************\n");
+ printf("Вывод второго массива\n");
+ printf("*********************\n");
  output_second(crab);
+ plusplus_for2(crab);
 
 }
