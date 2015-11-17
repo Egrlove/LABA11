@@ -1,3 +1,9 @@
+// Разработать программу, которая запоминает в двумерном массиве,
+// имеющем 5 строк и 4 столбца, числа от 1 до 10, получаемые случайным образом. 
+// Заполнить двумерный массив, имеющий 4 строки и 5 столбцов следующим образом:
+// элементы строки первого массива становятся столбцами второго массива. 
+// Определить суммы элементов строк для каждого массива.
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -14,18 +20,6 @@ void output (int array[][J] )
         printf("%4d",array[i][j] );
 	  }
 	printf("\n");
-   }
-}
-
-
-void obnyl (int array[][J])
-{int i, j;
-  for (i = 0; i < I; ++i)
-   {
- 	for (j = 0;j < J; ++j)
- 	  {
- 	   array[i][j]=0;
- 	  }
    }
 }
 
@@ -46,7 +40,7 @@ void arry_input (int array[][J])
    }
 }
 
-void plusplus(int array[][J])
+void sum_of_strings(int array[][J])
 {int i, j,a;
  for (i = 0; i < I; ++i)
    {
@@ -59,7 +53,7 @@ void plusplus(int array[][J])
    }
 }
 
-void plusplus_for2(int array[][I])
+void sum_of_strings_for2(int array[][I])
 {int i, j,a;
  for (i = 0; i < J; ++i)
    {
@@ -72,13 +66,13 @@ void plusplus_for2(int array[][I])
    }
 }
 
-void changing(int array[][J], int crab[][I])
+void changing(int array[][J], int secray[][I])
 {int i, j;
  for (i = 0; i < I; ++i)
    {
    	for (j = 0; j < J; ++j)
    	  {
-       crab[j][i] = array[i][j];
+       secray[j][i] = array[i][j];
    	  }
    }
 }
@@ -99,21 +93,22 @@ void output_second (int array[][I] )
 
 int main()
 {
+
  srand(time(NULL));
  int array[I][J];
- int crab[J][I];
+ int secray[J][I];
  arry_input(array);
  printf("\n*********************\n");
  printf("Вывод первого массива\n");
  printf("*********************\n");
  output(array);
- plusplus(array);
- changing(array, crab);
+ sum_of_strings(array);
+ changing(array, secray);
  printf("\n\n");
  printf("*********************\n");
  printf("Вывод второго массива\n");
  printf("*********************\n");
- output_second(crab);
- plusplus_for2(crab);
+ output_second(secray);
+ sum_of_strings_for2(secray);
 
 }
