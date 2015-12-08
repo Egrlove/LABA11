@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #define BUFSIZE 26
+#define YES 1
+
 
 struct Sword
 {
@@ -58,7 +60,7 @@ void output (struct Sword *current)
 
 int main()
 {
-int a = 0, c, FLAG = 6, Final;
+int a = 0, c, FLAG = 1, Final;
 struct Sword  *for_struct, *beginning, *last, *p;
 char *for_word;
  do
@@ -66,9 +68,9 @@ char *for_word;
     c = getchar();
     if ( (for_word = pointer_on_word(c)) != NULL  )
       {
-      	Final = 1;
+      	Final = YES;
         for_struct = malloc(sizeof(struct Sword));
-        for (p = beginning; p != NULL && Final == 1 ; p = p -> next)
+        for (p = beginning; p != NULL && Final == YES ; p = p -> next)
 	       {
 	        if ( strcmp(p->word, for_word) == 0 )
     	      {
@@ -80,8 +82,8 @@ char *for_word;
           {
       	   if (FLAG != 0)
       	     {
-      	      last = beginning = for_struct;
-              beginning -> word = for_word;
+      	      last = beginning = for_struct;    // Блок для первого слова 
+              beginning -> word = for_word;     // Повторяется только один раз
               beginning -> counter = 1;
       	      beginning -> next = NULL;
       	      FLAG = 0;
