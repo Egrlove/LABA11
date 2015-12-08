@@ -34,7 +34,10 @@ int main(int argc, char const *argv[])
       else
         fputc(wintable[c - 192],to);
      }
+    fclose(code_table);
+    fclose(tex_koi);
+    fclose(to);
  }
  else
- 	printf("Нет фалов\n");
+ 	printf("Указано недостаточное количество файлов\n");
 }
