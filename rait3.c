@@ -118,19 +118,20 @@ int main(int argc, char const *argv[])
 {
  int  i =0 , first_one = 1;
  list *for_struct;
- int lol, c;
+ int dig, c;
  go = fopen ("gig", "a+");
  fprintf(go, "///////////////////////////\n" );
  do
    {
    	c = getchar();
-   	if ((lol = getnum(c) )!= NOTANUM )
+   	if ((dig = getnum(c) )!= NOTANUM )
    	  {
-   	   fprintf(go,"%4d",lol );
-       search(lol);
+   	   fprintf(go,"%4d",dig );
+       search(dig);
    	  }// end of if
 
    }while (c != EOF);
  output(beginning);
  fprintf(go,"------------------------\n");
+ fclose(go);
 }
