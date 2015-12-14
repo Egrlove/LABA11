@@ -15,8 +15,6 @@ typedef struct lis
 list *beginning = NULL;
  FILE *go;
 
-
-
 int getnum (char cur)
 {
  char static prev =' ', chislo_idet = 0, chislo_moget_start = 0, est_chislo =0 , i =0 ;
@@ -26,7 +24,6 @@ int getnum (char cur)
     chislo_moget_start = TRUE;
  else 
  	chislo_moget_start = FALSE;
-
 
  if ((isdigit(cur) != 0) && (chislo_moget_start || chislo_idet) )
  	{
@@ -58,48 +55,37 @@ int getnum (char cur)
     return NOTANUM ;
 }
 
-
 void output (list *current)
 {
-	int t =0;
+ int t =0;
  list *p , *shalom;
+ fprintf(go,"\n");
  for (p = current; p != NULL; p =shalom)
 	{
-	 
-	 
 	 fprintf(go , "Число: %d \n", p -> num );
-	 //free(p -> word);
 	 shalom = p -> next;
-	 t++;
-	 //free(p);
-	
+	 free(p);
 	}
 }
-
 
 void search ( int dig)  
 {
  list *prev = NULL, *for_struct, *p;
-
  if (beginning == NULL)
    { 
- printf("ошибка 0  %d \n", dig);
     beginning = malloc(sizeof(list));
     beginning -> num = dig;
     beginning -> next = NULL;
-
     return;
    }
  for_struct = malloc(sizeof(list));
  for_struct -> num = dig;
  for_struct -> next = NULL;
- printf("ошибка 1 \n");
  p = beginning;
  while (p != NULL)
    {
     if (p -> num >= dig  )
       {
-      	 printf("ошибка 2 \n");
 
       	for_struct -> next = p;
       	if (prev == NULL)
@@ -111,81 +97,40 @@ void search ( int dig)
       }
     else
       {
-       if ( p -> next -> num > dig)
-
+       if (p -> next == NULL)
+       	 {
+       	  p -> next = for_struct;
+       	  return;
+       	 }
+       if (p -> next -> num > dig)
+         {
+          for_struct ->next = p -> next;
+          p -> next = for_struct;
+          return;
+         }
       }
-       printf("ошибка 3 \n");
-
-        prev = p;
-      	p = p -> next;
-
-
-
+    prev = p;
+    p = p -> next;
     }//end of while
-
-
-
-
-
-// end of func
-}
+} // end of func
 
 int main(int argc, char const *argv[])
 {
  int  i =0 , first_one = 1;
-list *for_struct;
+ list *for_struct;
  int lol, c;
- go = fopen ("gig", "w+");
+ go = fopen ("gig", "a+");
+ fprintf(go, "///////////////////////////\n" );
  do
    {
    	c = getchar();
    	if ((lol = getnum(c) )!= NOTANUM )
    	  {
-   	   fprintf(go,"%d\n",lol );
-   	   //for_struct = malloc(sizeof(list));
-       // if ( first_one )
-       //   {	
-    	  //  beginning -> num = lol;
-       // 	   beginning -> next = NULL;
-       // 	   first_one = 0;
-       // 	   continue;
-       // 	 }
-       	search(lol);
-
-
-   	  }
-
-
-
-
-
+   	   fprintf(go,"%4d",lol );
+       search(lol);
+   	  }// end of if
 
    }while (c != EOF);
-
-
-  
-  printf("------------------------\n");
-  output(beginning);
-
+ output(beginning);
+ fprintf(go,"------------------------\n");
 }
-/* 
-void search (list *beginning, int lol)  
-{
- list *prev = NULL, for_struct;
- for (p = beginning; p != NULL  ;prev =p,  p = p -> next)
-    {
-     if (p -> num >= lol  )
-       {
-       	for_struct = malloc(sizeof(list));
-       	for_struct -> next = p;
-       	if (prev != NULL)
-       	prev -> next = for_struct;
-
-       }
-
-
-    }
-// end of func
-}
-
-*/
